@@ -12,7 +12,7 @@ const query = `query countries {
         Country_Region
         Confirmed
         Deaths
-        Recovered 
+        Recovered
     }
 }`
 
@@ -43,13 +43,14 @@ app.get('/', (req, res) => {
         let recoveredGlobal = 0, recoveredVietnam = 0;
 
         data.countries.forEach(item => {
-            confirmedGlobal = confirmedGlobal + parseInt(item.Confirmed);
-            dieGlobal = dieGlobal + parseInt(item.Deaths);
-            recoveredGlobal = recoveredGlobal + parseInt(item.Recovered);
+            confirmedGlobal += (item.Confirmed) ? parseInt(item.Confirmed) : 0;
+            dieGlobal += (item.Deaths) ? parseInt(item.Deaths) : 0;
+            recoveredGlobal += (item.Recovered) ? parseInt(item.Recovered) : 0;
+            
             if(item.Country_Region == 'Vietnam'){
-                confirmedVietnam = parseInt(item.Confirmed);
-                dieVietnam = parseInt(item.Deaths);
-                recoveredVietnam = parseInt(item.Recovered);
+                confirmedVietnam = (item.Confirmed) ? parseInt(item.Confirmed) : 0;
+                dieVietnam = (item.Deaths) ? parseInt(item.Deaths) : 0;
+                recoveredVietnam = (item.Recovered) ? parseInt(item.Recovered) : 0;
             }
         });
 
