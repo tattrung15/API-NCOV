@@ -79,13 +79,14 @@ app.get('/api', (req, res) => {
         let recoveredGlobal = 0, recoveredVietnam = 0;
 
         data.countries.forEach(item => {
-            confirmedGlobal = confirmedGlobal + parseInt(item.Confirmed);
-            dieGlobal = dieGlobal + parseInt(item.Deaths);
-            recoveredGlobal = recoveredGlobal + parseInt(item.Recovered);
+            confirmedGlobal += (item.Confirmed) ? parseInt(item.Confirmed) : 0;
+            dieGlobal += (item.Deaths) ? parseInt(item.Deaths) : 0;
+            recoveredGlobal += (item.Recovered) ? parseInt(item.Recovered) : 0;
+            
             if(item.Country_Region == 'Vietnam'){
-                confirmedVietnam = parseInt(item.Confirmed);
-                dieVietnam = parseInt(item.Deaths);
-                recoveredVietnam = parseInt(item.Recovered);
+                confirmedVietnam = (item.Confirmed) ? parseInt(item.Confirmed) : 0;
+                dieVietnam = (item.Deaths) ? parseInt(item.Deaths) : 0;
+                recoveredVietnam = (item.Recovered) ? parseInt(item.Recovered) : 0;
             }
         });
 
@@ -110,13 +111,12 @@ app.get('/countries', (req, res) => {
         data.countries.forEach(item => {
             let data = {};
             
-            data.Country_Region = item.Country_Region;
-            data.Confirmed = item.Confirmed;
-            data.Deaths = item.Deaths;
-            data.Recovered = item.Recovered;
+            data.Country_Region = (item.Country_Region) ? item.Country_Region : 0;
+            data.Confirmed = (item.Confirmed) ? item.Confirmed : 0;
+            data.Deaths = (item.Deaths) ? item.Deaths : 0;
+            data.Recovered = (item.Recovered) ? item.Recovered : 0;
 
             dataJson.push(data);
-
         });
         
         res.status(200).json(dataJson);
