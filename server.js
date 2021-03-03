@@ -132,7 +132,7 @@ app.get('/search', (req, res) => {
 
             dataJson.push(data);
         });
-        res.status(200).json(dataJson.find(item => item.Country_Region.toLowerCase().includes(country.toLowerCase())));
+        res.status(200).json(dataJson.filter(item => item.Country_Region.toLowerCase().includes(country.toLowerCase())));
     }).catch(err => {
         res.status(400).json({
             err: 1,
@@ -173,6 +173,8 @@ app.get('/countries', (req, res) => {
     })
 })
 
-app.listen(process.env.PORT || 3000, () => {
-    console.log("Server is running");
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+    console.log(`Server is running at ${PORT}`);
 })
