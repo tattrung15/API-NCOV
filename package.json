@@ -11,7 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^4.19.2",
+    "express": "^4.20.0",
     "graphql-request": "^5.0.0",
     "swagger-jsdoc": "^6.0.2",
     "swagger-ui-express": "^4.6.0"
